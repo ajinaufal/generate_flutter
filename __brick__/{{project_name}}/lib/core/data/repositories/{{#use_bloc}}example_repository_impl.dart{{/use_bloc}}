@@ -1,0 +1,31 @@
+import 'dart:io';
+
+import 'package:dartz/dartz.dart';
+import 'package:{{project_name}}/core/core.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+class ExampleRepositoryImpl implements ExampleRepository {
+  final ExampleRemoteDataSource remoteDataSource;
+  final NetworkInfo networkInfo;
+
+  ExampleRepositoryImpl({
+    required this.remoteDataSource,
+    required this.networkInfo,
+  });
+
+  @override
+  Future<Either<Failure, ExampleEntity>> getExample() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final resp = await remoteDataSource.getExample();
+        return Right(resp);
+      } on ServerException {
+        return const Left(ServerFailure());
+      } on SocketException catch (e) {
+        return Left(SocketFailure(e.message));
+      }
+    } else {
+      return const Left(NetworkFailure());
+    }
+  }
+}
