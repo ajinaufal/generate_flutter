@@ -1,5 +1,6 @@
 {{#use_bloc}}
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:{{project_name}}/injector/injector.dart';
 {{/use_bloc}}
 
 {{#use_riverpod}}
@@ -10,13 +11,13 @@ import 'package:flutter/material.dart';
 import 'package:{{project_name}}/core/core.dart';
 import 'package:{{project_name}}/features/example/example.dart';
 import 'package:go_router/go_router.dart';
-import 'package:{{project_name}}/injector/injector.dart';
+
 
 {{#use_bloc}}
 final _key = GlobalKey<NavigatorState>(debugLabel: 'routerKey');
 {{/use_bloc}}
 {{#use_riverpod}}
-final _shellNavigatorKey = GlobalKey<NavigatorState>();
+final routeNavigatorKey = GlobalKey<NavigatorState>();
 {{/use_riverpod}}
 
 {{#use_bloc}}
@@ -60,7 +61,7 @@ List<GoRoute> get routes {
       ),
       {{/use_bloc}}
       {{#use_riverpod}}
-      builder: (context, state) => const HomeView(),
+      builder: (context, state) => const ExampleView(),
       {{/use_riverpod}}
     ),
   ];

@@ -6,10 +6,10 @@ part 'example_model.g.dart';
 
 @freezed
 class ExampleModel with _$ExampleModel {
-  const factory Example({
+  const factory ExampleModel({
     int? count,
     String? next,
-    dynamic? previous,
+    String? previous,
     List<ResultModel>? results,
   }) = _ExampleModel;
 
@@ -23,7 +23,7 @@ extension ExampleModelX on ExampleModel {
       count: count,
       next: next,
       previous: previous,
-      results: results.map((e) => e.toEntity()).toList(),
+      results: results?.map((e) => e.toEntity()).toList(),
     );
   }
 }

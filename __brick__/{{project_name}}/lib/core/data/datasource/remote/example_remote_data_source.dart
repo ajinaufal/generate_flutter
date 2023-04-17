@@ -1,7 +1,7 @@
 import 'package:{{project_name}}/core/core.dart';
 
 abstract class ExampleRemoteDataSource {
-  Future<ExampleEntity> getNationality(String name);
+  Future<ExampleEntity> getExample();
 }
 
 class ExampleRemoteDataSourceImpl implements ExampleRemoteDataSource {

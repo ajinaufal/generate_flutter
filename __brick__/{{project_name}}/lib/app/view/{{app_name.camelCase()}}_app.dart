@@ -23,7 +23,7 @@ class {{app_name.camelCase()}}App extends StatelessWidget {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
           routerConfig: router,
-          title: {{app_name.sentenceCase()}},
+          title: '{{app_name.sentenceCase()}}',
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
