@@ -1,5 +1,5 @@
 import 'app/app.dart';
-import '{{#use_bloc}}bootstrap.dart{{/use_bloc}}';
+import 'package:{{project_name}}/bootstrap.dart';
 
 void main() {
   bootstrap(() => const {{app_name.camelCase()}}App());

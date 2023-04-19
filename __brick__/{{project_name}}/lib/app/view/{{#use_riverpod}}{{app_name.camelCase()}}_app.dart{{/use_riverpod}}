@@ -1,6 +1,4 @@
-{{#use_riverpod}}
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-{{/use_riverpod}}
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:{{project_name}}/app/app_router.dart';
 import 'package:{{project_name}}/core/core.dart';
@@ -8,13 +6,11 @@ import 'package:{{project_name}}/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class {{app_name.camelCase()}}App extends StatelessWidget {
+class {{app_name.pascalCase()}}App extends ConsumerWidget {
   const {{app_name.camelCase()}}App({super.key});
   @override
-  Widget build(BuildContext context) {
-    {{#use_riverpod}}
+  Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    {{/use_riverpod}}
     return ScreenUtilInit(
       designSize: const Size(360, 800),
       minTextAdapt: true,
@@ -31,12 +27,7 @@ class {{app_name.camelCase()}}App extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: AppLocalizations.supportedLocales,
-          {{#use_riverpod}}
           theme: AppTheme.lightMode,
-          {{/use_riverpod}}
-          {{#use_bloc}}
-          darkTheme: ThemeData.dark(),
-          {{/use_bloc}}
         );
       },
     );
