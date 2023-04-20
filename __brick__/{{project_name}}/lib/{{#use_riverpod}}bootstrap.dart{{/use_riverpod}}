@@ -8,8 +8,8 @@ import 'package:{{project_name}}/core/core.dart';
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Hive.initFlutter();
-  await Hive.openBox(HiveConstant.boxConfig);
+  // await Hive.initFlutter();
+  // await Hive.openBox(HiveConstant.boxConfig);
   await runZonedGuarded(
     () async => runApp(
       ProviderScope(

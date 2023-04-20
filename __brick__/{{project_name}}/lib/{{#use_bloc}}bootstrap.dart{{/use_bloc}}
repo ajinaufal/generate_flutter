@@ -13,8 +13,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   await init();
-  await Hive.initFlutter();
-  await Hive.openBox('config');
+  // await Hive.initFlutter();
+  // await Hive.openBox('config');
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = AppProviderOberserver();
   runApp(await builder());

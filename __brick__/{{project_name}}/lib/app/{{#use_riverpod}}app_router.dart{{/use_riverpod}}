@@ -1,0 +1,32 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:{{project_name}}/core/core.dart';
+import 'package:{{project_name}}/features/features.dart';
+
+final routeNavigatorKey = GlobalKey<NavigatorState>();
+
+final routerProvider = Provider.autoDispose<GoRouter>((ref) {
+  final notifier = ref.watch(routerNotifierProvider.notifier);
+
+  return GoRouter(
+    navigatorKey: routeNavigatorKey,
+    debugLogDiagnostics: true,
+    initialLocation: '/',
+    observers: [RouterObserver()],
+    routes: routes,
+    refreshListenable: notifier,
+    redirect: notifier.redirect,
+  );
+});
+
+List<GoRoute> get routes {
+  return [
+    GoRoute(
+      parentNavigatorKey: routeNavigatorKey,
+      name: 'home',
+      path: '/',
+      builder: (context, state) => const ExampleView(),
+    ),
+  ];
+}
